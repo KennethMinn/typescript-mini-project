@@ -32,11 +32,13 @@ const list = new ListTemplate(ul);
 let doc;
 form.addEventListener("submit", (e) => {
     e.preventDefault();
+    let values;
+    values = [toFrom.value, details.value, amount.valueAsNumber];
     if (type.value === "invoice") {
-        doc = new Invoice(toFrom.value, details.value, amount.valueAsNumber);
+        doc = new Invoice(...values);
     }
     if (type.value === "payment") {
-        doc = new Payment(toFrom.value, details.value, amount.valueAsNumber);
+        doc = new Payment(...values);
     }
     console.log(doc);
     list.render(doc, type.value, "end");
