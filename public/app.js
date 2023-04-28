@@ -1,5 +1,6 @@
 import { Invoice } from "./classes/invoice.js";
 import { Payment } from "./classes/payment.js";
+import { ListTemplate } from "./classes/listTemplates.js";
 // const inv = new Invoice("mtk", "working with mfs", 500);
 // const pay = new Payment("st", "working with mfs", 400);
 // console.log(inv, pay);
@@ -25,16 +26,19 @@ const type = document.querySelector("#type");
 const toFrom = document.querySelector("#tofrom");
 const details = document.querySelector("#details");
 const amount = document.querySelector("#amount");
+//list template instance
+const ul = document.querySelector("ul");
+const list = new ListTemplate(ul);
+let doc;
 form.addEventListener("submit", (e) => {
     e.preventDefault();
-    let doc;
     if (type.value === "invoice") {
         doc = new Invoice(toFrom.value, details.value, amount.valueAsNumber);
-        console.log(doc);
     }
     if (type.value === "payment") {
         doc = new Payment(toFrom.value, details.value, amount.valueAsNumber);
-        console.log(doc);
     }
+    console.log(doc);
+    list.render(doc, type.value, "end");
     toFrom.value = details.value = amount.value = "";
 });

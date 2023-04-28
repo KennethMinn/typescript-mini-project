@@ -10,13 +10,13 @@ export class Invoice implements HasFormatter {
     public details: string,
     readonly amount: number
   ) {
-    this.client = client;
-    this.details = details;
-    this.amount = amount;
+    // this.client = client;
+    // this.details = details;
+    // this.amount = amount;
   }
 
   format() {
-    return `${this.client} owes ${this.amount} for ${this.details}`;
+    return `${this.client} owes $${this.amount} for ${this.details}.`;
     // console.log(`${this.client} owes ${this.amount} for ${this.details}`);
   }
 }
